@@ -1,0 +1,47 @@
+forkURLs:
+  kubeaid: https://github.com/Obmondo/kubeaid
+  kubeaidConfig: https://github.com/sbdtu5498/kubeaid-config
+
+cluster:
+  name: kubeaid-demo-hetzner-hcloud
+  k8sVersion: v1.31.0
+  kubeaidVersion: HEAD
+  enableAuditLogging: true
+  additionalUsers:
+    - name: kubeaid02
+      sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCkZ/s/5oJQVZ6WlXizMAT65PV1i4h0cWOiufu0Ei/aOvmpSVdZKm0EzgqknGC6qf5FKIpWu9//ZxjbCuX+ynJiKmIWRQdRP/p+AI/1H+s4cE42X2ItwGydhtF28QnPply0bOMQhu5C5o6p+yqDRZ8f8K3e6Lc3neFEVL/jiIjjHDqVSK9+0t0+Z/EDiHSi97bj/E5TmoRAQ+cVyPbUWy8eHifhP7gIBSuQUZ+MwPjNkf2zoj5z7A+gkrxCsfGo1mTDcXHfOQnXo8NXTZeUwYsmnbWBvpRXHL4tyAEJN3ah67dPs0VpE3Sj8vg+YY8oVgIF1GA2zKn7FEW1HF0Nh5R/glCRj5mmAlW9EnhouRnlSonEO3QHtHpNOaw5gKUo2lxt6Ic+YrgpAv/MfK+X4MSOnRk/aF1THdEMLRT9p3twCuG0Onx0PUkf+bWuSQ7LrMVmHNl9qknWZKu/XVCmPbXgR4bRj927w8uj7TOSYb+AnNXgfTgEEZldOV2xUVoMAYbG/qMuqlCTBo50B2s0hsVgTKNxNXT863usPE+PSeq8YJFnEeeepSy/CBMVOaICGlYXzso9Zd6S8+VIqXC0KEyxikBJ6RzemT9Z+cQKCm1VVF+qnZGasUf2tJ/ejAv2SyreR1jBQQ+3NC9liSDfV5Y6cpR4F4WvUP9GBSvjL391pw== kubeaid02
+
+cloud:
+  hetzner:
+    mode: hcloud
+    zone: eu-central
+    region: hel1
+
+    hcloudSSHKeyPairName: kubeaid02
+
+    networkEnabled: true
+
+    imageName: ubuntu-24.04
+
+    controlPlane:
+      machineType: cax11
+      replicas: 3
+      regions:
+        - fsn1
+        - nbg1
+        - hel1
+      loadBalancer:
+        enabled: true
+        region: hel1
+
+    nodeGroups:
+      hcloud:
+        - name: bootstrapper
+          machineType: cax11
+          minSize: 1
+          maxSize: 3
+          labels:
+            node-role.kubernetes.io/bootstrapper: ""
+            node.cluster.x-k8s.io/nodegroup: bootstrapper
+          taints: []
+
