@@ -13,7 +13,7 @@ spec:
     server: https://kubernetes.default.svc
   project: kubeaid
   sources:
-    - repoURL: https://github.com/Obmondo/kubeaid
+    - repoURL: https://github.com/sbdtu5498/kubeaid
       path: argocd-helm-charts/cilium
       targetRevision: HEAD
       helm:

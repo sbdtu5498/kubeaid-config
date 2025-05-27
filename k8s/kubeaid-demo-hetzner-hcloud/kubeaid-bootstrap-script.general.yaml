@@ -1,5 +1,5 @@
 forkURLs:
-  kubeaid: https://github.com/Obmondo/kubeaid
+  kubeaid: https://github.com/sbdtu5498/kubeaid
   kubeaidConfig: https://github.com/sbdtu5498/kubeaid-config
 
 cluster:
