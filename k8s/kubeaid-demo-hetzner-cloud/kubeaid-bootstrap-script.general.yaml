@@ -1,0 +1,89 @@
+forkURLs:
+  # KubeAid repository URL (in HTTPs syntax).
+  # Defaults to Obmondo's KubeAid repository.
+  # kubeaid: https://github.com/Obmondo/KubeAid
+
+  # Your KubeAid config repository URL (in HTTPs syntax).
+  kubeaidConfig: https://github.com/sbdtu5498/kubeaid-config
+
+cluster:
+  # Kubernetes cluster name.
+  name: kubeaid-demo-hetzner-cloud
+
+  # Kubernetes version to use.
+  k8sVersion: v1.31.0
+
+  # Kubeaid version to use.
+  kubeaidVersion: HEAD
+
+  # Uncomment, if you just want audit-logging to work out of the box! KubeAid Bootstrap Script will
+  # set necessary configuration options in cluster.apiServer.
+  # enableAuditLogging: True
+
+  # Any additional users you want to be setup for each Kubernetes node.
+  additionalUsers:
+  - name: kubeaid02
+    sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCkZ/s/5oJQVZ6WlXizMAT65PV1i4h0cWOiufu0Ei/aOvmpSVdZKm0EzgqknGC6qf5FKIpWu9//ZxjbCuX+ynJiKmIWRQdRP/p+AI/1H+s4cE42X2ItwGydhtF28QnPply0bOMQhu5C5o6p+yqDRZ8f8K3e6Lc3neFEVL/jiIjjHDqVSK9+0t0+Z/EDiHSi97bj/E5TmoRAQ+cVyPbUWy8eHifhP7gIBSuQUZ+MwPjNkf2zoj5z7A+gkrxCsfGo1mTDcXHfOQnXo8NXTZeUwYsmnbWBvpRXHL4tyAEJN3ah67dPs0VpE3Sj8vg+YY8oVgIF1GA2zKn7FEW1HF0Nh5R/glCRj5mmAlW9EnhouRnlSonEO3QHtHpNOaw5gKUo2lxt6Ic+YrgpAv/MfK+X4MSOnRk/aF1THdEMLRT9p3twCuG0Onx0PUkf+bWuSQ7LrMVmHNl9qknWZKu/XVCmPbXgR4bRj927w8uj7TOSYb+AnNXgfTgEEZldOV2xUVoMAYbG/qMuqlCTBo50B2s0hsVgTKNxNXT863usPE+PSeq8YJFnEeeepSy/CBMVOaICGlYXzso9Zd6S8+VIqXC0KEyxikBJ6RzemT9Z+cQKCm1VVF+qnZGasUf2tJ/ejAv2SyreR1jBQQ+3NC9liSDfV5Y6cpR4F4WvUP9GBSvjL391pw== kubeaid02
+
+  # Kubernetes API server specific configurations.
+  # REFER : https://github.com/kubernetes-sigs/cluster-api/blob/main/controlplane/kubeadm/config/crd/bases/controlplane.cluster.x-k8s.io_kubeadmcontrolplanes.yaml.
+  #
+  # NOTE : Generally, refer to the KubeadmControlPlane CRD instead of the corresponding GoLang
+  #        source types linked below.
+  #        There are some configuration options which appear in the corresponding GoLang source type,
+  #        but not in the CRD. If you set those fields, then they get removed by the Kubeadm control-plane
+  #        provider component, which results to the capi-cluster ArgoCD App always being in an
+  #        OutOfSync state, resulting to the KubeAid Bootstrap Script not making any progress!
+  apiServer:
+
+    extraArgs: {}
+
+    # REFER : "sigs.k8s.io/cluster-api/bootstrap/kubeadm/api/v1beta1".HostPathMount
+    #
+    # NOTE : If you want a mount to be read-only, then set extraVolume.readOnly to true.
+    #        Otherwise, omit setting that field. It gets removed by the Kubeadm control-plane
+    #        provider component, which results to the capi-cluster ArgoCD App always being in
+    #        OutOfSync state.
+    extraVolumes: []
+
+    # REFER : "sigs.k8s.io/cluster-api/bootstrap/kubeadm/api/v1beta1".File
+    files: []
+
+cloud:
+  # Hetzner Cloud specific configurations.
+  hetzner:
+    mode: hcloud
+
+    zone: eu-central
+    region: hel1
+
+    hcloudSSHKeyPairName: kubeaid02
+    networkEnabled: true
+    
+    imageName: ubuntu-24.04
+    
+    controlPlane:
+      machineType: cax11
+      replicas: 3
+      rootVolumeSize: 20
+      regions:
+        - fsn1
+        - nbg1
+        - hel1
+      loadBalancer:
+        enabled: true
+        region: hel1
+    
+    nodeGroups:
+      hcloud:
+        - name: worker
+          machineType: cx22
+          rootVolumeSize: 20
+          minSize: 1
+          maxSize: 1
+          desiredSize: 1
+          labels:
+            node-role.kubernetes.io/bootstrapper: ""
+            node.cluster.x-k8s.io/nodegroup: worker
+          taints: []
+
