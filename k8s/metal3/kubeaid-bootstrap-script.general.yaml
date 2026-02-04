@@ -48,7 +48,7 @@ cloud:
 
     controlPlane:
       endpoint:
-        host: "212.2.253.178"
+        host: "192.168.1.2"
         port: 6443
       hosts:
         - publicAddress: "212.2.253.178"
