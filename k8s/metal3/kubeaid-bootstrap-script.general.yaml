@@ -48,10 +48,10 @@ cloud:
 
     controlPlane:
       endpoint:
-        host: "192.168.1.2"
+        host: "100.75.55.28"
         port: 6443
       hosts:
-        - publicAddress: "212.2.253.178"
+        - publicAddress: "100.75.55.28"
           #
           # Or you can specify a private IP address.
           # privateAddress: ""
