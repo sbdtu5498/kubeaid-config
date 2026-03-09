@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opensearch
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    kubeaid.io/version: 2c2d587f1802fd23daabcb5ede9d3e2bfcf63d80
+    kubeaid.io/managed-by: kubeaid
+    kubeaid.io/priority: default
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: graylog
+  project: kubeaid
+  sources:
+    - repoURL: git@github.com:TheKilroyGroup/k8id.git
+      path: argocd-helm-charts/opensearch
+      targetRevision: 2c2d587f1802fd23daabcb5ede9d3e2bfcf63d80
+      helm:
+        valueFiles:
+          - $values/k8s/qa.az1.kilroy.eu/argocd-apps/values-opensearch.yaml
+    - repoURL: git@github.com:TheKilroyGroup/k8id-config.git
+      targetRevision: HEAD
+      ref: values
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true

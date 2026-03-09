@@ -1,0 +1,80 @@
+graylog:
+  graylog:
+    init:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 100Mi
+        limits:
+          memory: 1Gi
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 2600Mi
+      limits:
+        cpu: null
+        memory: 6Gi
+    heapSize: "2048m"
+
+    replicas: 3
+
+    persistence:
+      size: "50Gi"
+
+    # The message journal temporarily holds incoming messages before they are processed.
+    # By default, it is configured to store up to 5GB of messages or 12 hours of data.
+    #
+    # For optimal performance, it is recommended to store the message journal on high-speed storage,
+    # such as solid state drives (SSDs), and allocate storage capacity equivalent to 3 to 5 times
+    # your daily data ingestion to ensure efficient processing and log retention.
+    journal:
+      maxSize: 40gb
+
+    options:
+      processbufferProcessors: 6
+      outputbufferProcessors: 5
+
+      # existingRootSecret: graylog
+
+    plugins:
+      locations:
+        - name: graylog-plugin-function-check-diff-1.0.1.jar
+          url: https://github.com/KongZ/graylog-plugin-function-check-diff/releases/download/v1.0.1/graylog-plugin-function-check-diff-1.0.1.jar
+
+    externalUri: https://graylog.qa.az1.kilroy.eu
+    externalUriTLS: true
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        kubernetes.io/ingress.class: traefik-private
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-traefik-forward-auth@kubernetescrd
+      hosts:
+        - graylog.qa.az1.kilroy.eu
+      tls:
+        - secretName: graylog-auth-tls
+          hosts:
+            - graylog.qa.az1.kilroy.eu
+    input:
+      tcp:
+        service:
+          type: LoadBalancer
+          annotations:
+            service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+            external-dns.alpha.kubernetes.io/hostname: graylog-input.qa.az1.kilroy.eu
+        ports:
+          - name: gelf-port
+            port: 5555
+    elasticsearch:
+      version: ""
+
+mongodb:
+  installMongodb: true
+  version: "5.0.14"
+  replicas: 2
+  size: 4G
+
+logicalbackup:
+  enabled: true
+  provider: "az"
