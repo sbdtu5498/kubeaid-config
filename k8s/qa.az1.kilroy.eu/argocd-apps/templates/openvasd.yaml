@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    kubeaid.io/managed-by: kubeaid
+    kubeaid.io/sync-order: "10"
+  name: openvasd
+  namespace: argocd
+spec:
+  destination:
+    namespace: openvasd     
+    server: https://kubernetes.default.svc
+  project: kubeaid
+  sources:
+    - repoURL: https://github.com/sbdtu5498/kubeaid
+      path: argocd-helm-charts/openvasd
+      targetRevision: add_openvasd_helm_chart
+      helm:
+        valueFiles:
+          - $values/k8s/qa.az1.kilroy.eu/argocd-apps/values-openvasd.yaml
+    - repoURL: https://github.com/sbdtu5498/kubeaid-config
+      targetRevision: HEAD
+      ref: values
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
