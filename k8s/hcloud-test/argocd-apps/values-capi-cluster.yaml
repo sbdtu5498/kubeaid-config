@@ -16,7 +16,9 @@ hetzner:
 
   sshKeyPair:
     name: kubeaid-demo
-  hcloud: 
+  hcloud:
+    sshKeyPairName: kubeaid-demo
+
     zone: eu-central
     imageName: ubuntu-24.04
     hetznerNetwork:
@@ -50,5 +52,3 @@ hetzner:
         machineType: cax11
         rootvolumesize: 40
     bareMetal: []
-hcloud:
-  sshKeyPairName: kubeaid-demo
