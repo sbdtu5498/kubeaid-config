@@ -40,15 +40,5 @@ hetzner:
         region: hel1
 
   nodeGroups: 
-    hcloud:
-      - name: default
-        labels:
-          node-role.kubernetes.io/default: ""
-        taints: []
-        cpu: 2
-        memory: 4
-        minSize: 1
-        maxSize: 3
-        machineType: cax11
-        rootvolumesize: 40
+    hcloud: []
     bareMetal: []

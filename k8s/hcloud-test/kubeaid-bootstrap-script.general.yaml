@@ -102,24 +102,10 @@ cloud:
         - hel1
 
     # Details about node-groups in Hetzner.
+    # For single-node cluster, we don't need separate worker nodes.
+    # The control plane node will be schedulable.
     nodeGroups:
-      # Details about node-groups in HCloud.
-      hcloud:
-        - name: default
-          # HCloud machine type.
-          # You can browse all available HCloud machine types here : https://hetzner.com/cloud.
-          machineType: cax11
-          # Minimum number of replicas.
-          minSize: 1
-          # Maximum number of replicas.
-          maxSize: 3
-          # The root volume size for each HCloud machine.
-          rootVolumeSize: 50
-          # Labels for the node-group.
-          labels:
-            node-role.kubernetes.io/default: ""
-          # Taints for the node-group.
-          taints: []
+      hcloud: []
 
 # Kube Prometheus installation specific details.
 kubePrometheus:
