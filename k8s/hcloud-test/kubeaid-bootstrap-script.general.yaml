@@ -29,7 +29,7 @@ forkURLs:
 
 # Kubernetes specific details.
 cluster:
-  type: workload
+  type: vpn
   # Name of the Kubernetes cluster.
   #
   # We don't allow using dots in the cluster name, since it can cause issues with tools like
