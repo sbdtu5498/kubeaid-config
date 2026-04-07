@@ -76,7 +76,7 @@ cloud:
     # SSH key pair used to SSH into HCloud servers.
     # KubeAid CLI will create the corresponding HCloud SSH keypair if it doesn't already exist.
     sshKeyPair:
-      name: kubeaid-hcloud-test
+      name: kubeaid-demo
       publicKeyFilePath: "/home/sanskar/Documents/Workspace/kubeaid-cli/outputs/configs/secrets/public.key"
       privateKeyFilePath: "/home/sanskar/Documents/Workspace/kubeaid-cli/outputs/configs/secrets/private.key"
 

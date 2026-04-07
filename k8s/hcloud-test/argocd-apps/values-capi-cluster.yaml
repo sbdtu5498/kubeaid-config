@@ -15,7 +15,7 @@ hetzner:
   mode: hcloud
 
   sshKeyPair:
-    name: kubeaid-hcloud-test
+    name: kubeaid-demo
   hcloud: 
     zone: eu-central
     imageName: ubuntu-24.04
