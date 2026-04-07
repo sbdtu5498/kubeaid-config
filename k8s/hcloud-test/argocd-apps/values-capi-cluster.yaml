@@ -50,3 +50,5 @@ hetzner:
         machineType: cax11
         rootvolumesize: 40
     bareMetal: []
+hcloud:
+  sshKeyPairName: kubeaid-demo
