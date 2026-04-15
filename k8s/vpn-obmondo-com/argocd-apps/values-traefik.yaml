@@ -25,7 +25,7 @@ traefik:
   service:
     type: NodePort
     externalIPs:
-      - 89.167.56.191
+      - 95.217.175.227
   additionalArguments:
     - "--entrypoints.web.proxyprotocol=true"
     - "--entrypoints.web.proxyprotocol.insecure=true"
