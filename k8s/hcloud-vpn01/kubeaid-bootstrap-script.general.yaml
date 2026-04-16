@@ -5,7 +5,7 @@ git:
 forkURLs:
   kubeaid:
     url: git@github.com:Obmondo/KubeAid.git
-    version: 26.1.0
+    version: 25.0.0
   kubeaidConfig:
     url: git@github.com:sbdtu5498/kubeaid-config.git
     directory: 
