@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   labels:
-    kubeaid.io/version: 26.1.0
+    kubeaid.io/version: fix_networking_for_capi_hcloud
     kubeaid.io/managed-by: kubeaid
     kubeaid.io/sync-order: "10"
   name: cilium
@@ -15,7 +15,7 @@ spec:
   sources:
     - repoURL: git@github.com:Obmondo/KubeAid.git
       path: argocd-helm-charts/cilium
-      targetRevision: 26.1.0
+      targetRevision: fix_networking_for_capi_hcloud
       helm:
         valueFiles:
           - $values/k8s/hcloud-vpn101/argocd-apps/values-cilium.yaml

@@ -10,7 +10,7 @@ git:
 forkURLs:
   kubeaid:
     url: git@github.com:Obmondo/KubeAid.git
-    version: 26.1.0
+    version: fix_networking_for_capi_hcloud
   kubeaidConfig:
     url: git@github.com:sbdtu5498/kubeaid-config.git
     directory: 
