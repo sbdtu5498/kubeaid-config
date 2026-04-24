@@ -17,12 +17,10 @@ hetzner:
   sshKeyPair:
     name: private
   hcloud:
-
     zone: eu-central
     imageName: ubuntu-24.04
-    hetznerNetwork:
-      cidr: 10.0.0.0/16
-      hcloudServersSubnetCIDR: 10.0.0.0/24
+    cidrBlock: 10.0.0.0/16
+    subnetCidrBlock: 10.0.0.0/24
 
   controlPlane:
     regions: 
