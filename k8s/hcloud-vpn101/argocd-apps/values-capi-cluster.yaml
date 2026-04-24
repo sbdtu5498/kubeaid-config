@@ -17,7 +17,6 @@ hetzner:
   sshKeyPair:
     name: private
   hcloud:
-    sshKeyPairName: private
     cidrBlock: 10.0.0.0/16
     subnetCidrBlock: 10.0.0.0/24
 
