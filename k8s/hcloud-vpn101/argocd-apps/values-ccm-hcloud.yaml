@@ -6,3 +6,8 @@ hcloud-cloud-controller-manager:
 
   networking:
     enabled: true
+    network:
+      valueFrom:
+        secretKeyRef:
+          name: cloud-credentials
+          key: network
