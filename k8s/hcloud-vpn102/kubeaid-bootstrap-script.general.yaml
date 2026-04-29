@@ -1,0 +1,60 @@
+git:
+  caBundlePath:
+  # SSH username.
+  sshUsername: git
+  # Or, make KubeAid CLI use the SSH Agent.
+  # So, you (the one who runs KubeAid CLI) can use your YubiKey.
+  useSSHAgent: false
+  privateKeyFilePath: /home/sanskar/.ssh/id_ed25519
+
+forkURLs:
+  kubeaid:
+    url: git@github.com:Obmondo/KubeAid.git
+    version: fix_networking_for_capi_hcloud
+  kubeaidConfig:
+    url: git@github.com:sbdtu5498/kubeaid-config.git
+    directory: 
+
+cluster:
+  type: vpn
+  name: hcloud-vpn102
+  k8sVersion: v1.34.7
+  enableAuditLogging: false
+  apiServer:
+    extraArgs: {}
+    extraVolumes: []
+    files: []
+  argoCD:
+    deployKeys:
+      kubeaid:
+        privateKeyFilePath: /home/sanskar/.ssh/id_ed25519
+      kubeaidConfig:
+        privateKeyFilePath: /home/sanskar/.ssh/id_ed25519
+
+kubePrometheus:
+  version: v0.17.0
+
+cloud:
+  hetzner:
+    mode: hcloud
+    sshKeyPair:
+      name: private
+      privateKeyFilePath: /home/sanskar/Documents/Workspace/kubeaid-cli/outputs/configs.bak/secrets/private.key
+    hcloud:
+      zone: eu-central
+      imageName: ubuntu-24.04
+      hetznerNetwork:
+        cidr: "10.0.0.0/16"
+        hcloudServersSubnetCIDR: "10.0.0.0/24"
+    controlPlane:
+      hcloud:
+        machineType: cax21
+        replicas: 1
+        loadBalancer:
+          enabled: true
+          region: hel1
+      regions:
+        - hel1
+    nodeGroups:
+      hcloud: []
+
