@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    kubeaid.io/version: hcloud-configuration-improvements
+    kubeaid.io/managed-by: kubeaid
+    kubeaid.io/sync-order: "10"
+  name: ccm-hcloud
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
+  project: kubeaid
+  sources:
+    - repoURL: git@github.com:Obmondo/KubeAid.git
+      path: argocd-helm-charts/ccm-hcloud
+      targetRevision: hcloud/configuration-improvements
+      helm:
+        valueFiles:
+          - $values/k8s/hcloud-vpn107/argocd-apps/values-ccm-hcloud.yaml
+    - repoURL: git@github.com:sbdtu5498/kubeaid-config.git
+      targetRevision: HEAD
+      ref: values
+  syncPolicy:
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
