@@ -72,8 +72,8 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/apiserver
           name: grafana-dashboard-apiserver
           readOnly: false
-        - mountPath: /grafana-dashboard-definitions/0/cert-manager-cert-manager
-          name: grafana-dashboard-cert-manager-cert-manager
+        - mountPath: /grafana-dashboard-definitions/0/cert-manager
+          name: grafana-dashboard-cert-manager
           readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/cluster-total
           name: grafana-dashboard-cluster-total
@@ -81,8 +81,8 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/controller-manager
           name: grafana-dashboard-controller-manager
           readOnly: false
-        - mountPath: /grafana-dashboard-definitions/0/etcd-etcd
-          name: grafana-dashboard-etcd-etcd
+        - mountPath: /grafana-dashboard-definitions/0/etcd
+          name: grafana-dashboard-etcd
           readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/grafana-overview
           name: grafana-dashboard-grafana-overview
@@ -165,8 +165,8 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/scheduler
           name: grafana-dashboard-scheduler
           readOnly: false
-        - mountPath: /grafana-dashboard-definitions/0/sealedsecrets-sealed-secrets-controller
-          name: grafana-dashboard-sealedsecrets-sealed-secrets-controller
+        - mountPath: /grafana-dashboard-definitions/0/sealed-secrets-controller
+          name: grafana-dashboard-sealed-secrets-controller
           readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/workload-total
           name: grafana-dashboard-workload-total
@@ -201,8 +201,8 @@ spec:
           name: grafana-dashboard-apiserver
         name: grafana-dashboard-apiserver
       - configMap:
-          name: grafana-dashboard-cert-manager-cert-manager
-        name: grafana-dashboard-cert-manager-cert-manager
+          name: grafana-dashboard-cert-manager
+        name: grafana-dashboard-cert-manager
       - configMap:
           name: grafana-dashboard-cluster-total
         name: grafana-dashboard-cluster-total
@@ -210,8 +210,8 @@ spec:
           name: grafana-dashboard-controller-manager
         name: grafana-dashboard-controller-manager
       - configMap:
-          name: grafana-dashboard-etcd-etcd
-        name: grafana-dashboard-etcd-etcd
+          name: grafana-dashboard-etcd
+        name: grafana-dashboard-etcd
       - configMap:
           name: grafana-dashboard-grafana-overview
         name: grafana-dashboard-grafana-overview
@@ -294,8 +294,8 @@ spec:
           name: grafana-dashboard-scheduler
         name: grafana-dashboard-scheduler
       - configMap:
-          name: grafana-dashboard-sealedsecrets-sealed-secrets-controller
-        name: grafana-dashboard-sealedsecrets-sealed-secrets-controller
+          name: grafana-dashboard-sealed-secrets-controller
+        name: grafana-dashboard-sealed-secrets-controller
       - configMap:
           name: grafana-dashboard-workload-total
         name: grafana-dashboard-workload-total
