@@ -10,7 +10,7 @@ git:
 forkURLs:
   kubeaid:
     url: git@github.com:Obmondo/KubeAid.git
-    version: fix_networking_for_capi_hcloud
+    version: hcloud/configuration-improvements
   kubeaidConfig:
     url: git@github.com:sbdtu5498/kubeaid-config.git
     directory: 
@@ -49,7 +49,7 @@ cloud:
         hcloudServersSubnetCIDR: "10.0.0.0/24"
     controlPlane:
       hcloud:
-        machineType: cax21
+        machineType: cax22
         replicas: 1
         loadBalancer:
           enabled: true
