@@ -31,7 +31,7 @@ hetzner:
 
     
     hcloud: 
-      machineType: cx23
+      machineType: cx33
       replicas: 1
       loadBalancer:
         enabled: true
