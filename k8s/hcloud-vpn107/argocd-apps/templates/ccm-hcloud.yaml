@@ -15,7 +15,7 @@ spec:
   sources:
     - repoURL: git@github.com:Obmondo/KubeAid.git
       path: argocd-helm-charts/ccm-hcloud
-      targetRevision: hcloud/configuration-improvements
+      targetRevision: hcloud-configuration-improvements
       helm:
         valueFiles:
           - $values/k8s/hcloud-vpn107/argocd-apps/values-ccm-hcloud.yaml

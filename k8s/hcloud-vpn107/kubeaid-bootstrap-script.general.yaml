@@ -10,7 +10,7 @@ git:
 forkURLs:
   kubeaid:
     url: git@github.com:Obmondo/KubeAid.git
-    version: hcloud/configuration-improvements
+    version: hcloud-configuration-improvements
   kubeaidConfig:
     url: git@github.com:sbdtu5498/kubeaid-config.git
     directory: 
