@@ -4,30 +4,25 @@ metadata:
   labels:
     kubeaid.io/version: 28.0.0
     kubeaid.io/managed-by: kubeaid
-    kubeaid.io/sync-order: "10"
-  name: capi-cluster
+    kubeaid.io/sync-order: "25"
+  name: netbird
   namespace: argocd
 spec:
   destination:
-    namespace: capi-cluster
+    namespace: netbird
     server: https://kubernetes.default.svc
+  project: kubeaid
   sources:
     - repoURL: https://github.com/Obmondo/KubeAid.git
-      path: argocd-helm-charts/capi-cluster
+      path: argocd-helm-charts/netbird
       targetRevision: 28.0.0
       helm:
         valueFiles:
-          - $values/k8s/hcloud-vpn107/argocd-apps/values-capi-cluster.yaml
+          - $values/k8s/hcloud-vpn107/argocd-apps/values-netbird.yaml
     - repoURL: git@github.com:sbdtu5498/kubeaid-config
       targetRevision: HEAD
       ref: values
-  project: kubeaid
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
-  ignoreDifferences:
-    - group: cluster.x-k8s.io
-      kind: MachineDeployment
-      jsonPointers:
-        - /spec/replicas

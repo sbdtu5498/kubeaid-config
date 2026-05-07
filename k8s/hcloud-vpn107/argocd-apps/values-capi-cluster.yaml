@@ -1,11 +1,11 @@
 global:
   clusterName: hcloud-vpn107
   kubernetes:
-    version: v1.34.7
+    version: v1.35.4
   kubeaid:
-    repo: git@github.com:Obmondo/KubeAid.git
+    repo: https://github.com/Obmondo/KubeAid.git
   kubeaidConfig:
-    repo: git@github.com:sbdtu5498/kubeaid-config.git
+    repo: git@github.com:sbdtu5498/kubeaid-config
   additionalUsers: 
     []
 provider:
@@ -13,7 +13,7 @@ provider:
 
 hetzner:
   mode: hcloud
-  multipleSubnets: true
+  multipleSubnets: false
 
   sshKeyPair:
     name: private
@@ -25,17 +25,18 @@ hetzner:
 
   controlPlane:
     regions: 
-      - hel1
+      - nbg1
 
     
 
     
     hcloud: 
-      machineType: cx33
+      machineType: cpx32
       replicas: 1
       loadBalancer:
         enabled: true
-        region: hel1
+        region: nbg1
+        endpoint: ""
 
   nodeGroups: 
     hcloud: []

@@ -15,13 +15,13 @@ spec:
     namespace: capi-cluster
   project: kubeaid
   sources:
-    - repoURL: git@github.com:Obmondo/KubeAid.git
+    - repoURL: https://github.com/Obmondo/KubeAid.git
       path: argocd-helm-charts/cluster-api-operator
       targetRevision: 16.0.1
       helm:
         valueFiles:
           - $values/k8s/hcloud-vpn107/argocd-apps/values-cluster-api-operator.yaml
-    - repoURL: git@github.com:sbdtu5498/kubeaid-config.git
+    - repoURL: git@github.com:sbdtu5498/kubeaid-config
       targetRevision: HEAD
       ref: values
   syncPolicy:
